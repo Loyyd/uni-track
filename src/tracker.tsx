@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Trash2, BookOpen } from 'lucide-react';
 
-const GradeTracker = () => {
-  const [modules, setModules] = useState({
-    'Computer Programming I CSC1003': [],
-    'Computer Systems CSC1060': [],
-    'IT Mathematics I': [],
-    'Problem Solving CSC1012': [],
-    'Web Design CSC1061': []
-  });
-  const [isLoading, setIsLoading] = useState(true);
-  const [selectedModule, setSelectedModule] = useState('Computer Programming I CSC1003');
-  const [assignmentName, setAssignmentName] = useState('');
-  const [assignmentGrade, setAssignmentGrade] = useState('');
+type Assignment = { name: string; grade: number };
+type Modules = Record<string, Assignment[]>;
 
-  const moduleColors = {
+const initialModules: Modules = {
+  'Computer Programming I CSC1003': [],
+  'Computer Systems CSC1060': [],
+  'IT Mathematics I': [],
+  'Problem Solving CSC1012': [],
+  'Web Design CSC1061': []
+};
+
+const GradeTracker: React.FC = () => {
+  const [modules, setModules] = useState<Modules>(initialModules);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [selectedModule, setSelectedModule] = useState<string>('Computer Programming I CSC1003');
+  const [assignmentName, setAssignmentName] = useState<string>('');
+  const [assignmentGrade, setAssignmentGrade] = useState<string>('');
+
+  const moduleColors: Record<string, string> = {
     'Computer Programming I CSC1003': 'bg-yellow-50 border-yellow-300',
     'Computer Systems CSC1060': 'bg-blue-50 border-blue-300',
     'IT Mathematics I': 'bg-indigo-50 border-indigo-300',
@@ -22,7 +27,7 @@ const GradeTracker = () => {
     'Web Design CSC1061': 'bg-cyan-50 border-cyan-300'
   };
 
-  const moduleAccents = {
+  const moduleAccents: Record<string, string> = {
     'Computer Programming I CSC1003': 'bg-yellow-500',
     'Computer Systems CSC1060': 'bg-blue-500',
     'IT Mathematics I': 'bg-indigo-500',
@@ -31,11 +36,12 @@ const GradeTracker = () => {
   };
 
   useEffect(() => {
-    const loadData = async () => {
+    // Use localStorage for persistency in the browser
+    const loadData = () => {
       try {
-        const result = await window.storage.get('grade-tracker-modules');
-        if (result && result.value) {
-          setModules(JSON.parse(result.value));
+        const saved = localStorage.getItem('grade-tracker-modules');
+        if (saved) {
+          setModules(JSON.parse(saved));
         }
       } catch (error) {
         console.log('No saved data found, starting fresh');
@@ -47,25 +53,22 @@ const GradeTracker = () => {
 
   useEffect(() => {
     if (!isLoading) {
-      const saveData = async () => {
-        try {
-          await window.storage.set('grade-tracker-modules', JSON.stringify(modules));
-        } catch (error) {
-          console.error('Error saving data:', error);
-        }
-      };
-      saveData();
+      try {
+        localStorage.setItem('grade-tracker-modules', JSON.stringify(modules));
+      } catch (error) {
+        console.error('Error saving data:', error);
+      }
     }
   }, [modules, isLoading]);
 
   const addAssignment = () => {
     if (assignmentName && assignmentGrade) {
       const grade = parseFloat(assignmentGrade);
-      if (grade >= 0 && grade <= 100) {
-        setModules({
-          ...modules,
-          [selectedModule]: [...modules[selectedModule], { name: assignmentName, grade }]
-        });
+      if (Number.isFinite(grade) && grade >= 0 && grade <= 100) {
+        setModules(prev => ({
+          ...prev,
+          [selectedModule]: [...(prev[selectedModule] || []), { name: assignmentName, grade }]
+        }));
         setAssignmentName('');
         setAssignmentGrade('');
       } else {
@@ -74,30 +77,30 @@ const GradeTracker = () => {
     }
   };
 
-  const deleteAssignment = (moduleName, index) => {
-    setModules({
-      ...modules,
-      [moduleName]: modules[moduleName].filter((_, i) => i !== index)
-    });
+  const deleteAssignment = (moduleName: string, index: number) => {
+    setModules(prev => ({
+      ...prev,
+      [moduleName]: (prev[moduleName] || []).filter((_, i) => i !== index)
+    }));
   };
 
-  const calculateAverage = (assignments) => {
-    if (assignments.length === 0) return 0;
+  const calculateAverage = (assignments: Assignment[]): string => {
+    if (!assignments || assignments.length === 0) return '0';
     const sum = assignments.reduce((acc, curr) => acc + curr.grade, 0);
     return (sum / assignments.length).toFixed(2);
   };
 
-  const calculateOverallAverage = () => {
+  const calculateOverallAverage = (): string => {
     const averages = Object.values(modules)
       .filter(assignments => assignments.length > 0)
       .map(assignments => parseFloat(calculateAverage(assignments)));
-    
-    if (averages.length === 0) return 0;
+
+    if (averages.length === 0) return '0';
     const sum = averages.reduce((acc, curr) => acc + curr, 0);
     return (sum / averages.length).toFixed(2);
   };
 
-  const getGradeColor = (grade) => {
+  const getGradeColor = (grade: number): string => {
     if (grade >= 90) return 'text-green-600 font-bold';
     if (grade >= 80) return 'text-green-500 font-semibold';
     if (grade >= 70) return 'text-blue-500 font-semibold';
@@ -181,7 +184,7 @@ const GradeTracker = () => {
                   <p className="text-slate-500 text-center py-4 italic text-xs">No assignments yet</p>
                 ) : (
                   <div className="space-y-2">
-                    {assignments.map((assignment, index) => (
+                    {assignments.map((assignment: Assignment, index: number) => (
                       <div
                         key={index}
                         className="bg-white rounded-lg p-2 shadow-sm border border-slate-200"
