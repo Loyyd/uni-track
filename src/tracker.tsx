@@ -197,9 +197,9 @@ const GradeTracker: React.FC = () => {
     const gradedAssignments = assignments.filter(a => a.status === 'graded' || !a.status);
     if (gradedAssignments.length === 0) return '0';
     
-    const totalWeight = gradedAssignments.reduce((acc, curr) => acc + curr.weight, 0);
+    const totalWeight = gradedAssignments.reduce((acc, curr) => acc + (curr.weight ?? 0), 0);
     if (totalWeight === 0) return '0';
-    const weightedSum = gradedAssignments.reduce((acc, curr) => acc + ((curr.grade ?? 0) * curr.weight), 0);
+    const weightedSum = gradedAssignments.reduce((acc, curr) => acc + ((curr.grade ?? 0) * (curr.weight ?? 0)), 0);
     return (weightedSum / totalWeight).toFixed(2);
   };
 
@@ -482,7 +482,7 @@ const GradeTracker: React.FC = () => {
                                   </div>
                                 </div>
                               )}
-                              <p className="text-xs text-slate-500 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">Weight: {assignment.weight.toFixed(1)}%</p>
+                              <p className="text-xs text-slate-500 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">Weight: {(assignment.weight ?? 0).toFixed(1)}%</p>
                             </div>
                             <div className="flex flex-col gap-0.5 flex-shrink-0">
                               <button
