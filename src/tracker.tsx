@@ -25,7 +25,7 @@ const initialModules: Modules = {
     { name: 'Big Exam', grade: 40, weight: 80, status: 'na' }
   ],
   'Problem Solving CSC1012': [
-    { name: 'Friend Finding', grade: 100, weight: 5 },
+    { name: 'Friend Finding', grade: 100, weight: 5, status: 'graded' },
     { name: 'Group Quiz', grade: 80, weight: 5, status: 'graded' },
     { name: 'Looking Back I', grade: 70, weight: 5, status: 'graded' },
     { name: 'looking back II', grade: 80, weight: 5, status: 'graded' },
