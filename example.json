@@ -1,0 +1,176 @@
+{
+  "exportDate": "2025-11-20T20:03:33.103Z",
+  "modules": {
+    "Computer Programming I CSC1003": [
+      {
+        "name": "Programming Test 1",
+        "grade": 75,
+        "weight": 30,
+        "status": "graded"
+      },
+      {
+        "name": "Programming Test 2",
+        "grade": 40,
+        "weight": 30,
+        "status": "na"
+      },
+      {
+        "name": "Final Test",
+        "grade": 40,
+        "weight": 40,
+        "status": "na"
+      }
+    ],
+    "Computer Systems CSC1060": [
+      {
+        "name": "Assignment 1",
+        "grade": 60,
+        "weight": 10,
+        "status": "graded"
+      },
+      {
+        "name": "Binary Quiz",
+        "grade": 100,
+        "weight": 15,
+        "status": "graded"
+      },
+      {
+        "name": "Bool Quiz",
+        "grade": 100,
+        "weight": 15,
+        "status": "graded"
+      },
+      {
+        "name": "Assignment 2",
+        "grade": 40,
+        "weight": 15,
+        "status": "submitted"
+      },
+      {
+        "name": "Data Communication Quiz",
+        "grade": 100,
+        "weight": 15,
+        "status": "graded"
+      },
+      {
+        "name": "Data representation",
+        "grade": 40,
+        "weight": 15,
+        "status": "na"
+      },
+      {
+        "name": "Computer storage",
+        "grade": 40,
+        "weight": 15,
+        "status": "na"
+      }
+    ],
+    "IT Mathematics I": [
+      {
+        "name": "Online Quiz",
+        "grade": 100,
+        "weight": 10,
+        "status": "graded"
+      },
+      {
+        "name": "Online Quiz 2",
+        "grade": 40,
+        "weight": 10,
+        "status": "na"
+      },
+      {
+        "name": "Big Exam",
+        "grade": 40,
+        "weight": 80,
+        "status": "na"
+      }
+    ],
+    "Problem Solving CSC1012": [
+      {
+        "name": "Friend Finding",
+        "grade": 100,
+        "weight": 5
+      },
+      {
+        "name": "Group Quiz",
+        "grade": 80,
+        "weight": 5,
+        "status": "graded"
+      },
+      {
+        "name": "Looking Back I",
+        "grade": 70,
+        "weight": 5,
+        "status": "graded"
+      },
+      {
+        "name": "looking back II",
+        "grade": 80,
+        "weight": 5,
+        "status": "graded"
+      },
+      {
+        "name": " Individual Q I",
+        "grade": 40,
+        "weight": 5,
+        "status": "graded"
+      },
+      {
+        "name": " Individual Q II",
+        "grade": 45,
+        "weight": 5,
+        "status": "graded"
+      },
+      {
+        "name": " Individual Q III",
+        "grade": 50,
+        "weight": 5,
+        "status": "graded"
+      },
+      {
+        "name": "Standup",
+        "grade": 40,
+        "weight": 8,
+        "status": "submitted"
+      },
+      {
+        "name": "Group Project",
+        "grade": 40,
+        "weight": 32,
+        "status": "na"
+      },
+      {
+        "name": "Learning Portfolio",
+        "grade": 40,
+        "weight": 30,
+        "status": "na"
+      }
+    ],
+    "Web Design CSC1061": [
+      {
+        "name": "HTML Quiz",
+        "grade": 100,
+        "weight": 10,
+        "status": "graded"
+      },
+      {
+        "name": "CSS Quiz",
+        "grade": 100,
+        "weight": 15,
+        "status": "graded"
+      },
+      {
+        "name": "Individual Project",
+        "grade": 40,
+        "weight": 25,
+        "status": "submitted"
+      },
+      {
+        "name": "Group Project",
+        "grade": 40,
+        "weight": 50,
+        "status": "na"
+      }
+    ]
+  }
+}
