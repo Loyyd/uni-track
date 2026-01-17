@@ -318,7 +318,7 @@ const GradeTracker: React.FC = () => {
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-2">
             <BookOpen className="w-10 h-10 text-indigo-600" />
-            <h1 className="text-4xl font-bold text-slate-800">University Grade Tracker</h1>
+            <h1 className="text-4xl font-bold text-slate-800">ComSci1 Grade Tracker</h1>
           </div>
           <p className="text-slate-600">Track your assignments and monitor your academic progress</p>
           
