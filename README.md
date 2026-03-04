@@ -1,5 +1,7 @@
 # University Grade Tracker (Vite + React + TS)
 
+![UI Screenshot](assets/screenshot.png)
+
 This is a minimal Vite + React + TypeScript scaffold to run `tracker.tsx`.
 
 Quick start:
